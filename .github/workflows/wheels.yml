@@ -3,11 +3,6 @@ name: Wheels
 on:
   workflow_dispatch:
 
-env:
-  CIBW_BEFORE_BUILD: "python -m pip install numpy --only-binary=:all:"
-  CIBW_TEST_REQUIRES: pytest
-  CIBW_TEST_COMMAND: python -m pytest {package}/tests
-
 jobs:
   wheels:
     name: Build ${{ matrix.py }} wheels on ${{ matrix.os }}
@@ -24,7 +19,7 @@ jobs:
         with:
           submodules: true
 
-      - uses: pypa/cibuildwheel@v1.11.0
+      - uses: pypa/cibuildwheel@v2.0.0
 
       - uses: actions/upload-artifact@v2
         with:
